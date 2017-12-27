@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '../theme/variables';
+.wrapper {
+    margin: 5% 0;
+}
+
+.custom-navbar {
+    border-radius: 0;
+    background: $violet;
+}
+
+.btn-custom {
+    color: $white;
+    background-color: $violet;
+    border-color: $violet;
+    border-radius: 0;
+}
+
+.btn-custom.disabled:hover,
+.btn-custom:disabled:hover {
+    background-color: $violet;
+    border-color: $violet;
+}
+
+.form-control,
+.input-group-addon {
+    border-radius: 0;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+a {
+    color: $violet;
+    text-decoration: none;
+}
+
+.logo>h5 {
+    font-weight: bold;
+    font-style: italic;
+    float: left;
+    color: $white;
+    font-size: 32px;
+    margin-bottom: 0;
+}

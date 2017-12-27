@@ -1,0 +1,11 @@
+@import '../theme/variables';
+.product {
+    .thumbnail {
+        -webkit-box-shadow: 0px 0px 1px 1px $shadow;
+        -moz-box-shadow: 0px 0px 1px 1px $shadow;
+        box-shadow: 0px 0px 1px 1px $shadow;
+    }
+    .caption {
+        padding: 10px;
+    }
+}

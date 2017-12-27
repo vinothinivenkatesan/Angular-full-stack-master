@@ -1,0 +1,28 @@
+.login-box {
+    border-radius: 0;
+    width: 400px;
+    margin: auto;
+    .card-header {
+        background: none;
+        text-align: center;
+        padding: 10% 0% 6% 0%;
+        margin: 0% 5%;
+        font-size: 30px;
+    }
+    .card-block {
+        padding: 10% 5% 15% 5%;
+    }
+    button {
+        width: 100%;
+    }
+    .note {
+        margin-top: 3%;
+        text-align: center;
+        font-size: 15px;
+        font-style: italic;
+        a {
+            font-weight: bold;
+            font-style: normal;
+        }
+    }
+}
