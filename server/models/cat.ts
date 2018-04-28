@@ -2,8 +2,10 @@ import * as mongoose from 'mongoose';
 
 const catSchema = new mongoose.Schema({
   name: String,
-  weight: Number,
-  age: Number
+  quantity: Number,
+  price: Number,
+  description:String,
+  files:String
 });
 
 const Cat = mongoose.model('Cat', catSchema);

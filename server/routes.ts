@@ -1,5 +1,5 @@
 import * as express from 'express';
-
+import * as multer from 'multer';
 import CatCtrl from './controllers/cat';
 import UserCtrl from './controllers/user';
 import Cat from './models/cat';
@@ -12,6 +12,20 @@ export default function setRoutes(app) {
   const catCtrl = new CatCtrl();
   const userCtrl = new UserCtrl();
 
+  var multer = require("multer");
+
+  var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'client/assets/images/upload')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + '.jpg') //Appending .jpg
+    }
+  })
+
+  var upload = multer({ storage: storage });
+
+
   // Cats
   router.route('/cats').get(catCtrl.getAll);
   router.route('/cats/count').get(catCtrl.count);
@@ -19,6 +33,7 @@ export default function setRoutes(app) {
   router.route('/cat/:id').get(catCtrl.get);
   router.route('/cat/:id').put(catCtrl.update);
   router.route('/cat/:id').delete(catCtrl.delete);
+  router.route('/cat/upload').post(upload.array("myfile[]", 12), catCtrl.upload);
 
   // Users
   router.route('/login').post(userCtrl.login);

@@ -53,3 +53,28 @@ a {
 .sub-text {
     font-size: 22px;
 }
+
+.img-ul {
+    width: 35% !important;
+    margin: 0px auto 20px auto;
+}
+
+label.img-ul-upload.img-ul-button {
+    background: $green;
+    margin-bottom: 0;
+    font-size: 14px;
+    box-shadow: none;
+    text-transform: initial;
+}
+
+label.img-ul-clear.img-ul-button {
+    background: $red;
+    font-size: 14px;
+    margin-left: 10px;
+    box-shadow: none;
+    text-transform: initial;
+}
+
+.img-ul-image {
+    border: 1px solid $shadow;
+}

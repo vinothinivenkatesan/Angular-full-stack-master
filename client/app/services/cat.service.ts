@@ -25,6 +25,10 @@ export class CatService {
     return this.http.get<Cat>(`/api/cat/${cat._id}`);
   }
 
+  getCatById(id): Observable<Cat> {
+    return this.http.get<Cat>(`/api/cat/${id}`);
+  }
+
   editCat(cat: Cat): Observable<string> {
     return this.http.put(`/api/cat/${cat._id}`, cat, { responseType: 'text' });
   }

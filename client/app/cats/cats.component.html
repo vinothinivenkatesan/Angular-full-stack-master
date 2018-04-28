@@ -9,9 +9,9 @@
             <thead class="thead-default">
                 <tr>
                     <th>Name</th>
+                    <th>Images</th>
                     <th>Quantity</th>
                     <th>Price</th>
-                    <th>Description</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -20,34 +20,15 @@
                     <td colspan="5">There are no products in the DB. Add a new product below.</td>
                 </tr>
             </tbody>
-            <tbody *ngIf="!isEditing">
+            <tbody>
                 <tr *ngFor="let cat of cats">
                     <td>{{cat.name}}</td>
+                    <td><img class="thumbnail" src="{{filePath}}//{{cat.files}}"></td>
                     <td>{{cat.quantity}}</td>
                     <td>{{cat.price}}</td>
-                    <td>{{cat.description}}</td>
                     <td>
                         <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button>
                         <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody *ngIf="isEditing">
-                <tr>
-                    <td colspan="4">
-                        <form class="form-inline" #form="ngForm" (ngSubmit)="editCat(cat)" style="display:inline">
-                            <div class="form-group">
-                                <input class="form-control" type="text" name="name" [(ngModel)]="cat.name" placeholder="Name" required>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="number" name="age" [(ngModel)]="cat.age" placeholder="Age" min="0" required>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="number" name="weight" [(ngModel)]="cat.weight" placeholder="Weight" step="any" min="0" required>
-                            </div>
-                            <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
-                        </form>
-                        <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
                     </td>
                 </tr>
             </tbody>
@@ -55,23 +36,27 @@
     </div>
 </div>
 
-<div class="card product-box" *ngIf="!isEditing">
+<div class="card product-box">
     <h4 class="card-header color-text">Add new product</h4>
     <div class="card-block">
-        <form class="form-inline" [formGroup]="addCatForm" (ngSubmit)="addCat()" style="text-align:center">
+        <form class="form-inline" [formGroup]="addCatForm" style="text-align:center">
             <div class="form-group">
-                <input class="form-control" type="text" name="name" formControlName="name" placeholder="Name">
+                <p-fileUpload name="myfile[]" url="api/cat/upload" accept="image/*" maxFileSize="1000000" multiple="multiple" (onUpload)="fileUpload($event)"></p-fileUpload>
             </div>
             <div class="form-group">
-                <input class="form-control" type="number" name="quantity" formControlName="quantity" placeholder="Quantity" min="0">
+                <input class="form-control" type="text" name="name" [(ngModel)]="cat.name" formControlName="name" placeholder="Name">
             </div>
             <div class="form-group">
-                <input class="form-control" type="number" name="price" formControlName="price" placeholder="Price" step="any" min="0">
+                <input class="form-control" type="number" name="quantity" [(ngModel)]="cat.quantity" formControlName="quantity" placeholder="Quantity" min="0">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" name="description" formControlName="description" placeholder="Description" step="any" min="0">
+                <input class="form-control" type="number" name="price" [(ngModel)]="cat.price" formControlName="price" placeholder="Price" step="any" min="0">
             </div>
-            <button class="btn btn-primary" type="submit" [disabled]="!addCatForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+            <div class="form-group">
+                <input class="form-control" type="text" name="description" [(ngModel)]="cat.description" formControlName="description" placeholder="Description" step="any" min="0">
+            </div>
+            <button *ngIf="!isEditing" class="btn btn-primary" type="button" [disabled]="!addCatForm.valid" (click)="addCat(true)"><i class="fa fa-floppy-o"></i> Add</button>
+            <button *ngIf="isEditing" class="btn btn-primary" type="button" [disabled]="!addCatForm.valid" (click)="addCat(false)"><i class="fa fa-floppy-o"></i> Update</button>
         </form>
     </div>
 </div>

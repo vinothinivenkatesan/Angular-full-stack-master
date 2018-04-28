@@ -6,6 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastComponent } from './toast/toast.component';
 import { LoadingComponent } from './loading/loading.component';
 
+import { SharedService } from './methods/shared.service';
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { LoadingComponent } from './loading/loading.component';
     LoadingComponent
   ],
   providers: [
-    ToastComponent
+    ToastComponent,
+    SharedService
   ]
 })
 export class SharedModule { }

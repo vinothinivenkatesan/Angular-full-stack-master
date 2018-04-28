@@ -1,32 +1,16 @@
 <div class="wrapper">
     <div class="row">
-        <div class="col-md-4 product">
+        <div class="col-md-4 product" *ngFor="let item of items">
+
             <div class="thumbnail">
-                <img src="http://placehold.it/350x222" alt="">
+                <figure>
+                    <img src="{{filePath}}/{{item.files}}" alt="" class="img-responsive">
+                </figure>
                 <div class="caption">
-                    <h4 class="pull-right">$24.99</h4>
-                    <h4><a href="#">First Product</a></h4>
-                    <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 product">
-            <div class="thumbnail">
-                <img src="http://placehold.it/350x222" alt="">
-                <div class="caption">
-                    <h4 class="pull-right">$24.99</h4>
-                    <h4><a href="#">First Product</a></h4>
-                    <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 product">
-            <div class="thumbnail">
-                <img src="http://placehold.it/350x222" alt="">
-                <div class="caption">
-                    <h4 class="pull-right">$24.99</h4>
-                    <h4><a href="#">First Product</a></h4>
-                    <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                    <h4 class="pull-right">${{item.price}}</h4>
+                    <h4><a [routerLink]="['/detail', item._id]">{{item.name}}</a></h4>
+                    <p class="desc">{{item.description}}
+                    </p>
                 </div>
             </div>
         </div>
